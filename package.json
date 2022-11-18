@@ -1,0 +1,31 @@
+{
+  "name": "mywallet-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Back-end do projeto 14 do bootcamp Driven cuja proposta é fazer uma wallet utilizando NodeJs e Express. ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larissadalimar/my-wallet-back.git"
+  },
+  "keywords": [
+    "backend",
+    "nodejs",
+    "express"
+  ],
+  "author": "Larissa Dalimar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larissadalimar/my-wallet-back/issues"
+  },
+  "homepage": "https://github.com/larissadalimar/my-wallet-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
