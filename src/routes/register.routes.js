@@ -1,9 +1,15 @@
 import { Router } from 'express'
-import { signUp, signIn } from './controllers/user.controller.js'
-
+import authValidation from '../middlewares/auth.middleware.js'
+import { registerSchemaValidation } from '../middlewares/registerSchemaValidation.middleware.js'
+import { createRegister, getRegisters, getSaldo } from '../controllers/register.controller.js'
 
 const router = Router()
+router.use(authValidation)
 
-router.post("/sign-up", signUp)
+router.post("/register", registerSchemaValidation, createRegister)
 
-router.post("/sign-in", signIn)
+router.get("/register", getRegisters)
+
+router.get("/saldo", getSaldo)
+
+export default router

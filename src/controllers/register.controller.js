@@ -1,11 +1,12 @@
 
-import registerCollection from '../database/db.js'
+import { registersCollection } from '../database/db.js'
 
-async function createRegister(req, res){
+export async function createRegister(req, res){
     const { description, value, type } = req.body
+    const user = req.locals.user
 
     try {
-        await registerCollection.insertOne({description, value, type, time: dayjs().format("DD/MM")})
+        await registersCollection.insertOne({description, value, type, time: dayjs().format("DD/MM"), user: user._id})
 
         res.sendStatus(201)
     } catch (error) {
@@ -13,10 +14,12 @@ async function createRegister(req, res){
     }
 }
 
-async function getRegisters(req, res){
+export async function getRegisters(req, res){
+
+    const user = req.locals.user
 
     try {
-        const registers = await registerCollection.find().toArray()
+        const registers = await registersCollection.find({user: user._id}).toArray()
 
         res.send(registers)
 
@@ -25,7 +28,7 @@ async function getRegisters(req, res){
     }
 }
 
-async function getSaldo(req, res){
+export async function getSaldo(req, res){
     
     try {
         

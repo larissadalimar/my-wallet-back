@@ -1,4 +1,4 @@
-import MongoClient from 'mongodb'
+import { MongoClient } from 'mongodb'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -12,5 +12,6 @@ try {
 }
 
 const db = mongoClient.db("mywallet")
-const usersCollection = db.collection('users')
-const registerCollection = db.collection("registers")
+export const usersCollection = db.collection('users')
+export const registersCollection = db.collection("registers")
+export const sessionsCollection = db.collection("sessions")

@@ -1,10 +1,16 @@
 import { Router } from "express";
-import { createRegister, getRegisters, getSaldo } from './controllers/register.controller.js'
+import authValidation from "../middlewares/auth.middleware.js";
+import { signInValidation } from "../middlewares/signInValidation.middleware.js";
+import { signUpValidation } from "../middlewares/signUpValidation.middleware.js";
+import { signUp, signIn, signOut } from '../controllers/user.controller.js'
+
 
 const router = Router()
 
-router.post("/register", createRegister)
+router.post("/sign-up", signUpValidation, signUp)
 
-router.get("/register", getRegisters)
+router.post("/sign-in", signInValidation, signIn)
 
-router.get("/saldo", getSaldo)
+router.delete("/sign-out", authValidation, signOut)
+
+export default router
