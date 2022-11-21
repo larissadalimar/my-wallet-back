@@ -9,12 +9,14 @@ export default async function authValidation(req, res, next){
     try {
         const session = await sessionsCollection.findOne({token})
 
+        if(!session) return res.status(401).send("Unauthorized")
+
         const user = await usersCollection.findOne({ _id: session.userId })
 
         if(!user) return res.status(401).send("Unauthorized")
 
-        req.locals.session = session
-        req.locals.user = user
+        res.locals.session = session
+        res.locals.user = user
 
     } catch (error) {
         console.log(error)

@@ -11,6 +11,6 @@ router.post("/sign-up", signUpValidation, signUp)
 
 router.post("/sign-in", signInValidation, signIn)
 
-router.delete("/sign-out", authValidation, signOut)
+router.delete("/sign-out", signOut)
 
 export default router

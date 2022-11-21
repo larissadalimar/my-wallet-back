@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { usersCollection, sessionsCollection } from '../database/db.js'
+import { usersCollection, sessionsCollection, saldoCollection } from '../database/db.js'
 import { v4 as uuid } from 'uuid';
 
 export async function signUp(req, res) {
@@ -11,6 +11,10 @@ export async function signUp(req, res) {
     try {
 
         await usersCollection.insertOne({ name, password: passwordHash, email }) 
+
+        const user = await usersCollection.findOne({ email })
+
+        await saldoCollection.insertOne({userId: user._id, value: 0.0})
 
         res.sendStatus(201)
 
@@ -42,11 +46,13 @@ export async function signIn(req, res){
 
 export async function signOut (req, res){
 
-    const session = req.locals.session
+    const { authorization } = req.headers
+
+    const token = authorization?.replace("Bearer ", "")
 
     try {
 
-        await sessionsCollection.deleteOne(session)
+        await sessionsCollection.deleteOne({token})
         
         res.sendStatus(200)
 
