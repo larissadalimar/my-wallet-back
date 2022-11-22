@@ -10,4 +10,4 @@ app.use(express.json())
 app.use(userRoutes)
 app.use(registerRoutes)
 
-app.listen(5000, console.log("Running in port 5000"))
+app.listen(process.env.PORT, console.log(`Running in port ${process.env.PORT}`))

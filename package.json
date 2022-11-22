@@ -5,7 +5,8 @@
   "description": "Back-end do projeto 14 do bootcamp Driven cuja proposta é fazer uma wallet utilizando NodeJs e Express. ",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "dev": "npx nodemon src/index.js"
   },
   "repository": {
     "type": "git",
