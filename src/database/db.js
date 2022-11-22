@@ -11,7 +11,7 @@ try {
     console.log(error)
 }
 
-const db = mongoClient.db("Cluster0-wallet")
+const db = mongoClient.db("mywallet")
 export const usersCollection = db.collection('users')
 export const registersCollection = db.collection("registers")
 export const sessionsCollection = db.collection("sessions")
